@@ -1,4 +1,4 @@
-export const Tabs = ({ tab, selected, activeTabId, setActiveTabId }) => {
+export const Tabs = ({ tab, onTabSelect, activeTabId, setActiveTabId }) => {
   if (!tab) {
     return null;
   }
@@ -11,7 +11,7 @@ export const Tabs = ({ tab, selected, activeTabId, setActiveTabId }) => {
         href={`#${tab.id}`}
         data-cy="TabLink"
         onClick={() => {
-          selected(tab);
+          onTabSelect(tab);
           setActiveTabId(tab.id);
         }}
       >
