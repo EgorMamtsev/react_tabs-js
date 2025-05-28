@@ -13,30 +13,26 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [onTabSelected, setOnTabSelected] = useState(tabs[0]);
   const [activeTabId, setActiveTabId] = useState(tabs[0].id);
+
+  const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
     <div className="section">
-      <Header tab={onTabSelected} />
+      <Header tab={activeTab} />
+
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
           <ul>
-            {tabs.map(tab => {
-              return (
-                <Tabs
-                  tab={tab}
-                  key={tab.id}
-                  onTabSelect={setOnTabSelected}
-                  activeTabId={activeTabId}
-                  setActiveTabId={setActiveTabId}
-                />
-              );
-            })}
+            <Tabs
+              tabs={tabs}
+              activeTabId={activeTabId}
+              onTabSelected={setActiveTabId}
+            />
           </ul>
         </div>
 
-        <Text tab={onTabSelected} />
+        <Text tab={activeTab} />
       </div>
     </div>
   );
